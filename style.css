@@ -14,6 +14,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 h2 {
@@ -32,7 +33,8 @@ a {
 	border-style: solid;
 	border-width: thin;
 	padding: 10px;
-	margin: auto;
+	margin: 10px;
+	min-width: 300px;
 }
 
 .project-image {
