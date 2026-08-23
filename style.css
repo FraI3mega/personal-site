@@ -1,3 +1,8 @@
+body {
+	background-color: #1e1e2e;
+	color: #cdd6f4;
+}
+
 #header {
 	display: flex;
 	justify-content: center;
@@ -5,10 +10,53 @@
 	text-align: center;
 }
 
-:root {
-  font-family: Inter, sans-serif;
-  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+#projects-div {
+	display: flex;
+	flex-direction: row;
 }
+
+h2 {
+	text-align: center;
+}
+
+a {
+	color: #fab387;
+}
+
+.project {
+	background-color: #313244;
+	text-align: center;
+	border-radius: 10px;
+	border-color: #6c7086;
+	border-style: solid;
+	border-width: thin;
+	padding: 10px;
+	margin: auto;
+}
+
+.project-image {
+	width: 100%;
+	max-width: 250px;
+	height: auto;
+	display: inline-block;
+	border-radius: 10px;
+}
+
+.project-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 10px;
+}
+
+:root {
+	font-family: Inter, sans-serif;
+	font-feature-settings: 'liga' 1, 'calt' 1;
+	/* fix for Chrome */
+}
+
 @supports (font-variation-settings: normal) {
-  :root { font-family: InterVariable, sans-serif; }
+	:root {
+		font-family: InterVariable, sans-serif;
+	}
 }
