@@ -13,6 +13,7 @@ body {
 #projects-div {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 h2 {
