@@ -15,20 +15,25 @@
 	<div id="header">
 		<header>
 			<h1>FraI3mega</h1>
-			<!-- <nav> -->
-			<!-- 	<a href="#about">ABOUT</a> -->
-			<!-- 	<a href="#projects">PROJECTS</a> -->
-			<!-- </nav> -->
+			<nav>
+				<a href="#about"><b>About</b></a>
+				<a href="#projects"><b>Projects</b></a>
+				<a href="#cool-pics"><b>Pics</b></a>
+			</nav>
 		</header>
 	</div>
 
 	<section id="about">
-		<p>I'm interested in programming(<3 Rust), electronics, 3D printing and much more.</p>
+		<div id="aboutme">
+			<p>I'm interested in programming, electronics, 3D printing and much more.</p>
+			<p>Currently learning how to make semi-working electronics, embedded programming – in Rust and C – and some
+				web dev.</p>
+		</div>
 	</section>
 
 	<section id="projects">
 		<h2>My Projects</h2>
-		<div id="projects-div">
+		<div class="flex-div">
 			<div class="project">
 				<h3>Temp-Calc</h3>
 				<picture class="project-image">
@@ -38,7 +43,7 @@
 				<br>
 				The calculator of your nightmares
 				<br>
-				<a href="https://github.com/FraI3mega/temp-calc">Repo</a>
+				<a href="https://github.com/FraI3mega/temp-calc" class="github">Repo</a>
 			</div>
 			<div class="project">
 				<h3>Hackypad</h3>
@@ -49,12 +54,33 @@
 				<br>
 				A simple little 8-key macropad based on the RP2040 running qmk firmware
 				<br>
-				<a href="https://github.com/FraI3mega/hackypad">Repo</a>
+				<a href="https://github.com/FraI3mega/hackypad" class="github">Repo</a>
 			</div>
 			<div class="project">
 				<h3>This site</h3>
 				<!-- TODO: Add images -->
-				<a href="https://github.com/FraI3mega/personal-site">Repo</a>
+				<a href="https://github.com/FraI3mega/personal-site" class="github">Repo</a>
+			</div>
+		</div>
+	</section>
+
+
+	<section id="cool-pics">
+		<h2>Cool Pictures</h2>
+		<div class="flex-div">
+			<div class="photo-box">
+				<picture>
+					<source srcset="./assets/night_sky_seaside.jxl" type="image/jxl">
+					<source srcset="./assets/night_sky_seaside.avif" type="image/avif">
+					<img src="./assets/night_sky_seaside.jpg" height="500px" loading="lazy">
+				</picture>
+				<div>
+					<h3>Night sky by the seaside</h3>
+					<p>Took this photo without any planning. To this day I still think of it as my best ever. Too bad I lost the
+						original,
+						full-quality image after installing a new OS, so I'm stuck with
+						this lower-quality version, butchered by Google Photos.</p>
+				</div>
 			</div>
 		</div>
 	</section>

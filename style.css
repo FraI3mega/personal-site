@@ -1,20 +1,66 @@
 body {
 	background-color: #1e1e2e;
 	color: #cdd6f4;
+	max-width: 90em;
+	margin-inline: auto;
 }
 
 #header {
-	display: flex;
+	max-width: fit-content;
 	justify-content: center;
-	align-items: center;
 	text-align: center;
+	background-color: #313244;
+	border-color: #6c7086;
+	border-style: solid;
+	border-width: thin;
+	border-radius: 10px;
+	padding: 10px;
+	margin-inline: auto;
 }
 
-#projects-div {
+#header a {
+	text-decoration: none;
+}
+
+.flex-div {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
+}
+
+.photo-box {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	background-color: #313244;
+	border-color: #6c7086;
+	border-style: solid;
+	border-width: thin;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.photo-box div {
+	max-width: 40ch;
+	margin: 10px;
+	text-align: justify;
+}
+
+.photo-box img {
+	border-radius: 10px;
+	border-color: #7f849c;
+	border-style: solid;
+	border-width: thin;
+}
+
+
+#aboutme {
+	text-align: center;
+	max-width: 80ch;
+	margin-inline: auto;
 }
 
 h2 {
@@ -25,6 +71,8 @@ a {
 	color: #fab387;
 }
 
+.github {}
+
 .project {
 	background-color: #313244;
 	text-align: center;
@@ -34,7 +82,7 @@ a {
 	border-width: thin;
 	padding: 10px;
 	margin: 10px;
-	min-width: 300px;
+	width: 300px;
 }
 
 .project-image {
@@ -44,6 +92,7 @@ a {
 	display: inline-block;
 	border-radius: 10px;
 }
+
 
 .project-image img {
 	width: 100%;
