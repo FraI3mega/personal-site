@@ -9,4 +9,5 @@ My own personal site on the web. Available at [213742.xyz](https://213742.xyz)
 
 ## Credits
 
-The font used is Inter, you can find it [here](https://rsms.me/inter/)
+The font used is [Inter](https://rsms.me/inter/).
+The color scheme is [Catppuccin](https://catppuccin.com/).
