@@ -11,11 +11,17 @@ My very own personal site on the web, made with plain html and css. Available at
   - [Credits](#credits)
 <!--toc:end-->
 
+## Ideas
+
+### Night Sky Background
+
+The longer that you stay on the site, the more stars appear, and they also start gaining colors.
+It should feel like your eyes are acclimating to the dark
+
 ## Design
 
 It's my first voyage into design so I wanted to keep it more minimal, better for it to be a bit bland, then unreadable or unusable.
 Plan to work on my skills and improve it in due time.
-
 
 ## Site Layout
 
