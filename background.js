@@ -1,5 +1,23 @@
-const canvas = document.getElementById("backgroundCanvas");
+const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset before rescaling
+    ctx.scale(dpr, dpr);
+
+    canvas.style.width = `${rect.width}px`;
+    canvas.style.height = `${rect.height}px`;
+  }
+
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
 const { width, height } = canvas.getBoundingClientRect();
 
 function getScaledInt(rand, max) {
@@ -13,8 +31,8 @@ console.log("%o %o", width, height)
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function drawParticles() {
-	const minSize = 0.1;
-	const maxSize = 3;
+	const minSize = 0.5;
+	const maxSize = 2;
 	const p = -1.35; //Salpeter IMF
 	let x;
 	let y;
@@ -37,4 +55,5 @@ async function drawParticles() {
 	}
 }
 
-drawParticles();
+window.addEventListener('resize', drawParticles);
+drawParticles()
