@@ -28,6 +28,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function drawParticles() {
 	const minSize = 0.5;
 	const maxSize = 2;
+	const coverageFactor = 0.003;
 	const p = -1.35; //Salpeter IMF
 	let x;
 	let y;
@@ -35,7 +36,10 @@ async function drawParticles() {
 	let width = window.innerWidth;
 	let height = window.innerHeight;
 
-	for (let step = 0; step < 1000; step++) {
+	let area = width * height;
+	let coveredArea = 0;
+
+	while (coveredArea < area * coverageFactor) {
 		x = Math.random() * width;
 		y = Math.random() * height;
 		size = Math.pow((Math.pow(maxSize, p) - Math.pow(minSize, p)) * Math.random() + Math.pow(minSize, p), 1 / p);
@@ -46,6 +50,8 @@ async function drawParticles() {
 		ctx.fillStyle = "white";
 		ctx.fill();
 		ctx.stroke();
+
+		coveredArea += (size ** 2) * Math.PI
 
 		// await sleep(5);
 	}
