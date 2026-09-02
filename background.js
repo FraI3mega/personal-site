@@ -2,32 +2,27 @@ const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 
 function resizeCanvas() {
-    const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
+	var w = window.innerWidth;
+	var h = window.innerHeight;
+	const dpr = Math.max(window.devicePixelRatio, 1);
 
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
 
-    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset before rescaling
-    ctx.scale(dpr, dpr);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); // reset before rescaling
+  ctx.scale(dpr, dpr);
 
-    canvas.style.width = `${rect.width}px`;
-    canvas.style.height = `${rect.height}px`;
+  canvas.style.width = `${w}px`;
+  canvas.style.height = `${h}px`;
   }
 
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-const { width, height } = canvas.getBoundingClientRect();
 
 function getScaledInt(rand, max) {
 	return Math.floor(rand * max);
 }
-
-
-console.log("%o %o", width, height)
-
-
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function drawParticles() {
@@ -37,12 +32,13 @@ async function drawParticles() {
 	let x;
 	let y;
 	let size;
+	let width = window.innerWidth;
+	let height = window.innerHeight;
 
 	for (let step = 0; step < 1000; step++) {
 		x = Math.random() * width;
 		y = Math.random() * height;
 		size = Math.pow((Math.pow(maxSize, p) - Math.pow(minSize, p)) * Math.random() + Math.pow(minSize, p), 1 / p);
-		console.log("step:%o W:%o H:%o size:%o", step, x, y, size);
 
 		ctx.beginPath();
 		ctx.arc(x, y, size, 0, 2 * Math.PI);
