@@ -25,9 +25,28 @@ function getScaledInt(rand, max) {
 }
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+function getColor(relSize) {
+	// relSize - [0,1]
+	if (relSize <= 0.13) {
+		return "#FFB971";
+	} else if (relSize <= 0.17) {
+		return "#FFDDBA";
+	} else if (relSize <= 0.20) {
+		return "#FFEFE4";
+	} else if (relSize <= 0.24) {
+		return "#FAF6FF";
+	} else if (relSize <= 0.33) {
+		return "#D9E1FF";
+	} else if (relSize < 1) {
+		return "#ABC1FF";
+	} else {
+		return "#9CB6FF";
+	}
+}
+
 async function drawParticles() {
 	const minSize = 0.5;
-	const maxSize = 2;
+	const maxSize = 1.5;
 	const coverageFactor = 0.003;
 	const p = -1.35; //Salpeter IMF
 	let x;
@@ -43,17 +62,23 @@ async function drawParticles() {
 		x = Math.random() * width;
 		y = Math.random() * height;
 		size = Math.pow((Math.pow(maxSize, p) - Math.pow(minSize, p)) * Math.random() + Math.pow(minSize, p), 1 / p);
+		let relSize = (size - minSize) / (maxSize - minSize);
+		let color = getColor(relSize);
+		let alpha = Math.min(Math.floor(relSize * 2 * 100),100);
+    
+		console.log("size: %o sizeRel: %o color: %o alpha: %o",size,relSize,color,alpha)
+		color += alpha.toString(16);
 
 		ctx.beginPath();
 		ctx.arc(x, y, size, 0, 2 * Math.PI);
-		ctx.strokeStyle = "white";
-		ctx.fillStyle = "white";
+		ctx.strokeStyle = color;
+		ctx.fillStyle = color;
 		ctx.fill();
 		ctx.stroke();
 
 		coveredArea += (size ** 2) * Math.PI
 
-		// await sleep(5);
+		 // await sleep(5);
 	}
 }
 
