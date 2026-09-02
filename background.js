@@ -6,15 +6,15 @@ function resizeCanvas() {
 	var h = window.innerHeight;
 	const dpr = Math.max(window.devicePixelRatio, 1);
 
-  canvas.width = w * dpr;
-  canvas.height = h * dpr;
+	canvas.width = w * dpr;
+	canvas.height = h * dpr;
 
-  ctx.setTransform(1, 0, 0, 1, 0, 0); // reset before rescaling
-  ctx.scale(dpr, dpr);
+	ctx.setTransform(1, 0, 0, 1, 0, 0); // reset before rescaling
+	ctx.scale(dpr, dpr);
 
-  canvas.style.width = `${w}px`;
-  canvas.style.height = `${h}px`;
-  }
+	canvas.style.width = `${w}px`;
+	canvas.style.height = `${h}px`;
+}
 
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
@@ -64,9 +64,9 @@ async function drawParticles() {
 		size = Math.pow((Math.pow(maxSize, p) - Math.pow(minSize, p)) * Math.random() + Math.pow(minSize, p), 1 / p);
 		let relSize = (size - minSize) / (maxSize - minSize);
 		let color = getColor(relSize);
-		let alpha = Math.min(Math.floor(relSize * 2 * 100),100);
-    
-		console.log("size: %o sizeRel: %o color: %o alpha: %o",size,relSize,color,alpha)
+		let alpha = Math.min(Math.floor(relSize * 2 * 100), 100);
+
+		console.log("size: %o sizeRel: %o color: %o alpha: %o", size, relSize, color, alpha)
 		color += alpha.toString(16);
 
 		ctx.beginPath();
@@ -78,7 +78,7 @@ async function drawParticles() {
 
 		coveredArea += (size ** 2) * Math.PI
 
-		 // await sleep(5);
+		// await sleep(5);
 	}
 }
 
