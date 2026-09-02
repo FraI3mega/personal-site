@@ -66,7 +66,6 @@ async function drawParticles() {
 		let color = getColor(relSize);
 		let alpha = Math.min(Math.floor(relSize * 2 * 100), 100);
 
-		console.log("size: %o sizeRel: %o color: %o alpha: %o", size, relSize, color, alpha)
 		color += alpha.toString(16);
 
 		ctx.beginPath();
