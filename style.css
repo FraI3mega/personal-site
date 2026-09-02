@@ -5,11 +5,12 @@ body {
 	margin-inline: auto;
 }
 
+
 #header {
 	max-width: fit-content;
 	justify-content: center;
 	text-align: center;
-	background-color: #313244;
+	background-color: #11111b;
 	border-color: #6c7086;
 	border-style: solid;
 	border-width: thin;
@@ -20,6 +21,15 @@ body {
 
 #header a {
 	text-decoration: none;
+}
+
+#bg {
+	position: fixed;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	display: block;
 }
 
 .flex-div {
@@ -61,6 +71,13 @@ body {
 	text-align: center;
 	max-width: 80ch;
 	margin-inline: auto;
+	background-color: #313244;
+	text-align: center;
+	border-radius: 10px;
+	border-color: #6c7086;
+	border-style: solid;
+	border-width: thin;
+	padding: 10px;
 }
 
 h2 {
@@ -71,7 +88,19 @@ a {
 	color: #fab387;
 }
 
-.github {}
+
+h2 {
+	background-color: #181825;
+	border-color: #6c7086;
+	border-style: solid;
+	border-width: thin;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+	max-width: fit-content;
+	margin-inline: auto;
+}
+
 
 .project {
 	background-color: #313244;
