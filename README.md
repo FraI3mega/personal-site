@@ -4,6 +4,7 @@ My very own personal site on the web, made with plain html and css. Available at
 
 <!--toc:start-->
 - [Personal Site](#personal-site)
+  - [Ideas](#ideas)
   - [Design](#design)
   - [Site Layout](#site-layout)
   - [Code](#code)
@@ -13,15 +14,13 @@ My very own personal site on the web, made with plain html and css. Available at
 
 ## Ideas
 
-### Night Sky Background
-
-The longer that you stay on the site, the more stars appear, and they also start gaining colors.
-It should feel like your eyes are acclimating to the dark
+- Make the stars fade in
 
 ## Design
 
 It's my first voyage into design so I wanted to keep it more minimal, better for it to be a bit bland, then unreadable or unusable.
-Plan to work on my skills and improve it in due time.
+My newest addition is a dynamic night sky background, that's generated on the fly.
+The size is selected using a power law distribution, from which the color and brightness is derived.
 
 ## Site Layout
 
@@ -37,6 +36,7 @@ Might also add a small blog, a blogroll of people I follow or a section about my
 ## Code
 
 The site is currently a single file `index.html`, in addition to the `style.css` stylesheet.
+The script for the background is stored in `background.js`
 All the assets are stored in the `assets/` folder.
 
 ## Useful Resources
@@ -51,3 +51,4 @@ I used these when making the site, they are really helpful.
 
 The font used is [Inter](https://rsms.me/inter/).
 The color scheme is [Catppuccin](https://catppuccin.com/).
+The star colors are based on the [Wikipedia Stellar classification](https://en.wikipedia.org/w/index.php?title=Stellar_classification&oldid=1372675941)
