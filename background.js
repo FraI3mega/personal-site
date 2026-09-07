@@ -44,15 +44,22 @@ function getColor(relSize) {
 	}
 }
 
-async function drawParticle(x, y, size, relSize) {
+function Star(x, y, size, relSize) {
+	this.x = x;
+	this.y = y;
+	this.size = size;
+	this.relSize = relSize;
+}
 
-	let color = getColor(relSize);
-	let alpha = Math.floor(relSize * 255 * 0.5);
+async function drawParticle(star) {
+
+	let color = getColor(star.relSize);
+	let alpha = Math.floor(star.relSize * 255 * 0.5);
 
 	color += alpha.toString(16).padStart(2, '0');
 
 	ctx.beginPath();
-	ctx.arc(x, y, size, 0, 2 * Math.PI);
+	ctx.arc(star.x, star.y, star.size, 0, 2 * Math.PI);
 	ctx.strokeStyle = color;
 	ctx.fillStyle = color;
 	ctx.fill();
@@ -64,8 +71,8 @@ async function drawParticles() {
 	const coverageFactor = 0.003;
 	const minSize = 0.5;
 	const maxSize = 1.5;
-
 	const p = -1.35; //Salpeter IMF
+
 	let x;
 	let y;
 	let size;
@@ -74,6 +81,7 @@ async function drawParticles() {
 	let height = window.innerHeight;
 	let area = width * height;
 	let coveredArea = 0;
+	let stars = [];
 
 	while (coveredArea < area * coverageFactor) {
 		x = Math.random() * width;
@@ -81,12 +89,12 @@ async function drawParticles() {
 		size = Math.pow((Math.pow(maxSize, p) - Math.pow(minSize, p)) * Math.random() + Math.pow(minSize, p), 1 / p);
 		relSize = (size - minSize) / (maxSize - minSize);
 
-		drawParticle(x, y, size, relSize);
-
+		drawParticle(new Star(x, y, size, relSize));
 		coveredArea += (size ** 2) * Math.PI;
 
 		// await sleep(5);
 	}
+	console.log(stars)
 }
 
 window.addEventListener('resize', drawParticles);
