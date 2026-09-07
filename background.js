@@ -89,12 +89,11 @@ async function drawParticles() {
 		size = Math.pow((Math.pow(maxSize, p) - Math.pow(minSize, p)) * Math.random() + Math.pow(minSize, p), 1 / p);
 		relSize = (size - minSize) / (maxSize - minSize);
 
-		drawParticle(new Star(x, y, size, relSize));
+		stars.push(new Star(x, y, size, relSize));
 		coveredArea += (size ** 2) * Math.PI;
-
-		// await sleep(5);
 	}
 	console.log(stars)
+	stars.forEach(drawParticle)
 }
 
 window.addEventListener('resize', drawParticles);
