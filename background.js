@@ -66,8 +66,9 @@ async function drawParticle(star) {
 	ctx.stroke();
 }
 
+let stars = [];
 
-async function drawParticles() {
+async function generateStars() {
 	const coverageFactor = 0.003;
 	const minSize = 0.5;
 	const maxSize = 1.5;
@@ -81,7 +82,8 @@ async function drawParticles() {
 	let height = window.innerHeight;
 	let area = width * height;
 	let coveredArea = 0;
-	let stars = [];
+
+	stars = [];
 
 	while (coveredArea < area * coverageFactor) {
 		x = Math.random() * width;
@@ -92,9 +94,17 @@ async function drawParticles() {
 		stars.push(new Star(x, y, size, relSize));
 		coveredArea += (size ** 2) * Math.PI;
 	}
-	console.log(stars)
+}
+
+
+async function drawParticles() {
 	stars.forEach(drawParticle)
 }
 
-window.addEventListener('resize', drawParticles);
-drawParticles()
+async function render() {
+	await generateStars()
+	drawParticles()
+}
+
+window.addEventListener('resize', render);
+render()
