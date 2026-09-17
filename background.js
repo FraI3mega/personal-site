@@ -44,12 +44,11 @@ function getColor(relSize) {
 	}
 }
 
-function Star(x, y, size, relSize, angle) {
+function Star(x, y, size, relSize) {
 	this.x = x;
 	this.y = y;
 	this.size = size;
 	this.relSize = relSize;
-	this.angle = angle;
 }
 
 async function drawParticle(star) {
@@ -69,7 +68,7 @@ async function drawParticle(star) {
 
 let stars = [];
 
-function generateStars() {
+async function generateStars() {
 	const coverageFactor = 0.003;
 	const minSize = 0.5;
 	const maxSize = 1.5;
@@ -79,71 +78,33 @@ function generateStars() {
 	let y;
 	let size;
 	let relSize;
-	let angle;
-	let width = canvas.width;
-	let height = canvas.height;
+	let width = window.innerWidth;
+	let height = window.innerHeight;
 	let area = width * height;
 	let coveredArea = 0;
-	const originX = width / 2
-	const originY = height / 2
 
 	stars = [];
 
 	while (coveredArea < area * coverageFactor) {
+		x = Math.random() * width;
+		y = Math.random() * height;
 		size = Math.pow((Math.pow(maxSize, p) - Math.pow(minSize, p)) * Math.random() + Math.pow(minSize, p), 1 / p);
 		relSize = (size - minSize) / (maxSize - minSize);
-		angle = 2 * Math.PI * Math.random()
 
-		stars.push(new Star(originX, originY, size, relSize, angle));
+		stars.push(new Star(x, y, size, relSize));
 		coveredArea += (size ** 2) * Math.PI;
 	}
 }
 
 
 async function drawParticles() {
-	let width = canvas.width;
-	let height = canvas.height;
-
-	ctx.clearRect(0, 0, width, height);
-	stars.forEach(drawParticle);
+	stars.forEach(drawParticle)
 }
 
-generateStars()
-
-async function resize() {
-	generateStars()
-	// for (let i = 0; i < 5; i++) {
-	// 	stars.map(moveStar)
-	// }
+async function render() {
+	await generateStars()
 	drawParticles()
 }
 
-window.addEventListener('resize', resize);
-resize()
-
-function moveStar(star) {
-	const displacement = Math.random() * 1; // px
-	let width = canvas.width;
-	let height = canvas.height;
-	let originX = width / 2
-	let originY = height / 2
-
-	let x = (Math.cos(star.angle) * displacement);
-	let y = (Math.sin(star.angle) * displacement);
-	star.x += x;
-	star.y += y;
-	if (star.x > width || star.x < 0 || star.y > height || star.y < 0) {
-		star.x = originX
-		star.y = originY;
-		star.angle = 2 * Math.PI * Math.random()
-	}
-	return star
-}
-
-function animate() {
-	stars.map(moveStar);
-	drawParticles();
-	requestAnimationFrame(animate)
-}
-
-animate()
+window.addEventListener('resize', render);
+render()
