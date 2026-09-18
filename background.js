@@ -2,109 +2,108 @@ const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 
 function resizeCanvas() {
-	var w = window.innerWidth;
-	var h = window.innerHeight;
-	const dpr = Math.max(window.devicePixelRatio, 1);
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+  const dpr = Math.max(window.devicePixelRatio, 1);
 
-	canvas.width = w * dpr;
-	canvas.height = h * dpr;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
 
-	ctx.setTransform(1, 0, 0, 1, 0, 0); // reset before rescaling
-	ctx.scale(dpr, dpr);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); // reset before rescaling
+  ctx.scale(dpr, dpr);
 
-	canvas.style.width = `${w}px`;
-	canvas.style.height = `${h}px`;
+  canvas.style.width = `${w}px`;
+  canvas.style.height = `${h}px`;
 }
 
 resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
+window.addEventListener("resize", resizeCanvas);
 
 function getScaledInt(rand, max) {
-	return Math.floor(rand * max);
+  return Math.floor(rand * max);
 }
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function getColor(relSize) {
-	// relSize - [0,1]
-	if (relSize <= 0.13) {
-		return "#FFB971";
-	} else if (relSize <= 0.17) {
-		return "#FFDDBA";
-	} else if (relSize <= 0.20) {
-		return "#FFEFE4";
-	} else if (relSize <= 0.24) {
-		return "#FAF6FF";
-	} else if (relSize <= 0.33) {
-		return "#D9E1FF";
-	} else if (relSize < 1) {
-		return "#ABC1FF";
-	} else {
-		return "#9CB6FF";
-	}
+  // relSize - [0,1]
+  if (relSize <= 0.13) {
+    return "#FFB971";
+  } else if (relSize <= 0.17) {
+    return "#FFDDBA";
+  } else if (relSize <= 0.2) {
+    return "#FFEFE4";
+  } else if (relSize <= 0.24) {
+    return "#FAF6FF";
+  } else if (relSize <= 0.33) {
+    return "#D9E1FF";
+  } else if (relSize < 1) {
+    return "#ABC1FF";
+  } else {
+    return "#9CB6FF";
+  }
 }
 
 function Star(x, y, size, relSize) {
-	this.x = x;
-	this.y = y;
-	this.size = size;
-	this.relSize = relSize;
+  this.x = x;
+  this.y = y;
+  this.size = size;
+  this.relSize = relSize;
 }
 
 async function drawParticle(star) {
+  let color = getColor(star.relSize);
+  let alpha = Math.floor(star.relSize * 255 * 0.5);
+  color += alpha.toString(16).padStart(2, "0");
 
-	let color = getColor(star.relSize);
-	let alpha = Math.floor(star.relSize * 255 * 0.5);
-
-	color += alpha.toString(16).padStart(2, '0');
-
-	ctx.beginPath();
-	ctx.arc(star.x, star.y, star.size, 0, 2 * Math.PI);
-	ctx.strokeStyle = color;
-	ctx.fillStyle = color;
-	ctx.fill();
-	ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(star.x, star.y, star.size, 0, 2 * Math.PI);
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.stroke();
 }
 
 let stars = [];
 
 async function generateStars() {
-	const coverageFactor = 0.003;
-	const minSize = 0.5;
-	const maxSize = 1.5;
-	const p = -1.35; //Salpeter IMF
+  const coverageFactor = 0.003;
+  const minSize = 0.5;
+  const maxSize = 1.5;
+  const p = -1.35; //Salpeter IMF
 
-	let x;
-	let y;
-	let size;
-	let relSize;
-	let width = window.innerWidth;
-	let height = window.innerHeight;
-	let area = width * height;
-	let coveredArea = 0;
+  let x;
+  let y;
+  let size;
+  let relSize;
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  let area = width * height;
+  let coveredArea = 0;
 
-	stars = [];
+  stars = [];
 
-	while (coveredArea < area * coverageFactor) {
-		x = Math.random() * width;
-		y = Math.random() * height;
-		size = Math.pow((Math.pow(maxSize, p) - Math.pow(minSize, p)) * Math.random() + Math.pow(minSize, p), 1 / p);
-		relSize = (size - minSize) / (maxSize - minSize);
+  while (coveredArea < area * coverageFactor) {
+    x = Math.random() * width;
+    y = Math.random() * height;
+    size = Math.pow(
+      (Math.pow(maxSize, p) - Math.pow(minSize, p)) * Math.random() + Math.pow(minSize, p),
+      1 / p,
+    );
+    relSize = (size - minSize) / (maxSize - minSize);
 
-		stars.push(new Star(x, y, size, relSize));
-		coveredArea += (size ** 2) * Math.PI;
-	}
+    stars.push(new Star(x, y, size, relSize));
+    coveredArea += size ** 2 * Math.PI;
+  }
 }
 
-
 async function drawParticles() {
-	stars.forEach(drawParticle)
+  stars.forEach(drawParticle);
 }
 
 async function render() {
-	await generateStars()
-	drawParticles()
+  await generateStars();
+  drawParticles();
 }
 
-window.addEventListener('resize', render);
-render()
+window.addEventListener("resize", render);
+render();
