@@ -21,4 +21,8 @@
     ports.http.allocate = 8000;
 
   };
+
+  git-hooks.hooks = {
+    oxfmt.enable = true;
+  };
 }
