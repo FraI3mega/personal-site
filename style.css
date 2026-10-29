@@ -10,10 +10,12 @@ body {
 	max-width: fit-content;
 	justify-content: center;
 	text-align: center;
+	position: sticky;
 	background-color: #11111b;
 	border-color: #6c7086;
 	border-style: solid;
 	border-width: thin;
+	top: 5px;
 	border-radius: 10px;
 	padding: 10px 20px;
 	margin-inline: auto;
