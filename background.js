@@ -19,11 +19,6 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-function getScaledInt(rand, max) {
-  return Math.floor(rand * max);
-}
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 function getColor(relSize) {
   // relSize - [0,1]
   if (relSize <= 0.13) {
@@ -119,5 +114,5 @@ function render(tmstamp) {
   window.requestAnimationFrame(render);
 }
 
-window.addEventListener("resize", render);
+window.addEventListener("resize", generateStars);
 render(0);
