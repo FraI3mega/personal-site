@@ -43,16 +43,21 @@ function getColor(relSize) {
   }
 }
 
-function Star(x, y, size, relSize) {
+let timestamp = 0;
+function Star(x, y, size, relSize, speed, phase) {
   this.x = x;
   this.y = y;
   this.size = size;
   this.relSize = relSize;
+  this.speed = speed;
+  this.phase = phase;
 }
 
-async function drawParticle(star) {
+function drawParticle(star) {
   let color = getColor(star.relSize);
-  let alpha = Math.floor(star.relSize * 255 * 0.5);
+  let alpha = Math.floor(
+    (Math.sin(timestamp * star.speed + star.phase) + 1) * star.relSize * 255 * 0.5,
+  );
   color += alpha.toString(16).padStart(2, "0");
 
   ctx.beginPath();
@@ -65,7 +70,7 @@ async function drawParticle(star) {
 
 let stars = [];
 
-async function generateStars() {
+function generateStars() {
   const coverageFactor = 0.003;
   const minSize = 0.5;
   const maxSize = 1.5;
@@ -79,6 +84,8 @@ async function generateStars() {
   let height = window.innerHeight;
   let area = width * height;
   let coveredArea = 0;
+  let speed;
+  let phase;
 
   stars = [];
 
@@ -90,20 +97,27 @@ async function generateStars() {
       1 / p,
     );
     relSize = (size - minSize) / (maxSize - minSize);
+    speed = Math.random() * 0.001;
+    phase = Math.random() * 2 * Math.PI;
 
-    stars.push(new Star(x, y, size, relSize));
+    stars.push(new Star(x, y, size, relSize, speed, phase));
     coveredArea += size ** 2 * Math.PI;
   }
 }
 
-async function drawParticles() {
+function drawParticles() {
   stars.forEach(drawParticle);
 }
 
-async function render() {
-  await generateStars();
+generateStars();
+
+function render(tmstamp) {
+  timestamp = tmstamp;
+  ctx.fillStyle = "rgba(30, 30, 46, 1)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
   drawParticles();
+  window.requestAnimationFrame(render);
 }
 
 window.addEventListener("resize", render);
-render();
+render(0);
