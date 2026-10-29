@@ -1,27 +1,24 @@
 body {
 	background-color: #1e1e2e;
 	color: #cdd6f4;
-	/* max-width: 90em; */
-	/* margin-inline: auto; */
 }
 
 
-#header {
+header {
 	max-width: fit-content;
 	justify-content: center;
 	text-align: center;
 	position: sticky;
 	background-color: #11111b;
-	border-color: #6c7086;
-	border-style: solid;
-	border-width: thin;
-	top: 5px;
+	border: thin solid #6c7086;
+	top: 10px;
+	margin-bottom: 10px;
 	border-radius: 10px;
 	padding: 10px 20px;
 	margin-inline: auto;
 }
 
-#header a {
+header a {
 	text-decoration: none;
 }
 
