@@ -14,13 +14,14 @@ My very own personal site on the web, made with plain html and css. Available at
 
 ## Ideas
 
-- Make the stars fade in
+- Add a blogroll
 
 ## Design
 
 It's my first voyage into design so I wanted to keep it more minimal, better for it to be a bit bland, then unreadable or unusable.
 My newest addition is a dynamic night sky background, that's generated on the fly.
 The size is selected using a power law distribution, from which the color and brightness is derived.
+The stars also slowly twinkle
 
 ## Site Layout
 
